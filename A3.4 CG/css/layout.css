@@ -1,0 +1,196 @@
+/* Reset and global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 220px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 5;
+}
+
+.sidebar .slider-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.sidebar input[type="range"] {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.sidebar label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#intensityValue {
+    color: white;
+    display: block;
+}
+
+/* Main content area adjustments */
+.main-content {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.furniture-wrapper {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: grab;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.furniture-container {
+    margin: 5px;
+    padding: 5px;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.furniture-dropdown {
+    padding: 5px;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+.button-container button {
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.button-container button:last-child {
+    margin-right: 0;
+}
+
+.button-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Transparent box styles */
+.transparent-box {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #ccc;
+    position: absolute;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+/* Style adjustments for main content area */
+.main-content {
+    margin-left: 220px;
+    width: calc(100% - 220px);
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Adjustments for slider within the sidebar */
+.sidebar .slider-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.sidebar input[type="range"] {
+    width: 100%;
+}
+
+.sidebar label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* New styles for dropdown and button */
+.select-container {
+    margin-bottom: 20px;
+}
+
+#audioInputSelect {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#audioInputSelect:hover, #audioInputSelect:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#startButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#startButton:hover {
+    background-color: #218838;
+    box-shadow: 0 0 5px rgba(33, 136, 56, 0.5);
+}
+
+#startButton:focus {
+    outline: none;
+    background-color: #218838;
+    box-shadow: 0 0 5px rgba(33, 136, 56, 0.7);
+}

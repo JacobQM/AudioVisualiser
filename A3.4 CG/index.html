@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CG Labs</title>
+    <script src="/js/three.js"></script>
+    <script src="/js/OrbitControls.js"></script>
+    <script src="js/dat.gui.min.js"></script>
+    <script src="/js/MTLLoader.js"></script>
+    <script src="/js/OBJLoader.js"></script>
+    <link rel="stylesheet" href="css/layout.css">
+</head>
+
+<body>
+    <header>
+        <h1>Jacob Bayne - 14328076 - A3.4 Shaders</h1>
+    </header>
+
+    <script id="vertexShaderBass" type="x-shader/x-vertex">
+        varying vec2 vUv;
+        uniform float time;
+        uniform float mainAmplitude;
+        uniform float mainFrequency;
+        uniform float detailAmplitude;
+        uniform float detailFrequency;
+        uniform float audioData;
+
+        void main() {
+            vUv = uv;
+            vec3 pos = position;
+            float dist = length(pos);
+
+            // Main ripple pattern with increased distortion
+            float ripple1 = sin((dist - time * mainFrequency) * mainFrequency) * mainAmplitude * audioData;
+
+            // Detail ripple pattern with increased distortion
+            float ripple2 = sin((dist - time * detailFrequency) * detailFrequency) * detailAmplitude * audioData;
+
+            // Apply displacement to the vertex positions
+            pos += normalize(pos) * (ripple1 + ripple2) * 2.0;
+
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+        }
+    </script>
+
+    <script id="fragmentShaderBass" type="x-shader/x-fragment">
+        varying vec2 vUv;
+        uniform vec3 color;
+
+        void main() {
+            gl_FragColor = vec4(color, 1.0);
+        }
+    </script>
+
+    <script id="vertexShaderMid" type="x-shader/x-vertex">
+        varying vec2 vUv;
+        uniform float time;
+        uniform float mainAmplitude;
+        uniform float mainFrequency;
+        uniform float detailAmplitude;
+        uniform float detailFrequency;
+        uniform float audioData;
+
+        void main() {
+            vUv = uv;
+            vec3 pos = position;
+            vec2 uvCentered = uv - 0.5;
+            float dist = length(uvCentered);
+
+            // Main ripple pattern
+            float ripple1 = sin((dist - time * mainFrequency) * mainFrequency) * mainAmplitude * audioData;
+
+            // Detail ripple pattern
+            float ripple2 = sin((dist - time * detailFrequency) * detailFrequency) * detailAmplitude * audioData;
+
+            pos.z += ripple1 + ripple2;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+        }
+    </script>
+
+    <script id="fragmentShaderMid" type="x-shader/x-fragment">
+        varying vec2 vUv;
+        uniform vec3 color;
+
+        void main() {
+            gl_FragColor = vec4(color, 1.0);
+        }
+    </script>
+
+    <script id="vertexShaderTreble" type="x-shader/x-vertex">
+        varying vec2 vUv;
+        uniform float time;
+        uniform float mainAmplitude;
+        uniform float mainFrequency;
+        uniform float detailAmplitude;
+        uniform float detailFrequency;
+        uniform float audioData;
+
+        void main() {
+            vUv = uv;
+            vec3 pos = position;
+            vec2 uvCentered = uv - 0.5;
+            float dist = length(uvCentered);
+
+            // Main ripple pattern
+            float ripple1 = sin((dist - time * mainFrequency) * mainFrequency) * mainAmplitude * audioData;
+
+            // Detail ripple pattern
+            float ripple2 = sin((dist - time * detailFrequency) * detailFrequency) * detailAmplitude * audioData;
+
+            pos.z += ripple1 + ripple2;
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+        }
+    </script>
+
+    <script id="fragmentShaderTreble" type="x-shader/x-fragment">
+        varying vec2 vUv;
+        uniform vec3 color;
+
+        void main() {
+            gl_FragColor = vec4(color, 1.0);
+        }
+    </script>
+
+    <script src="labs/A3.4/setup.js"></script>
+    <script src="labs/A3.4/build.js"></script>
+    <script src="labs/A3.4/animate.js"></script>
+    <script src="labs/A3.4/run.js"></script>
+</body>
+
+</html>
